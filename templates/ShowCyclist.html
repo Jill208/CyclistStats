@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "Styles/Styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,700&family=Poppins:wght@800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cabin:ital@1&family=Lato:ital,wght@1,700&family=Poppins:wght@800&display=swap" rel="stylesheet">
+<head>
+    <style>
+        body  {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://wallpapercave.com/wp/wp3001015.jpg");
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+        }
+        td {
+            text-align: center;
+        }
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+    .container td, .container th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+    text-align: center;
+    }
+    body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color:#E5D9B6;
+    background-color:#1F2739;
+    }
+
+    h1 {
+    font-size:3em;
+    font-weight: 300;
+    line-height:1em;
+    text-align: center;
+    color: #4DC3FA;
+    }
+
+    h2 {
+    font-size:1em;
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    line-height:1em;
+    padding-bottom: 2em;
+    color: #1C6758;
+    }
+
+    h2 a {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1C6758;
+    text-decoration: none;
+    }
+
+    .blue { color: #185875; }
+    .yellow { color: #16da75; }
+
+    .container th h1 {
+        font-weight: bold;
+        font-size: 1em;
+    text-align: left;
+    color: #185875;
+    }
+
+    .container td {
+        font-weight: normal;
+        font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+        -moz-box-shadow: 0 2px 2px -2px #0E1119;
+            box-shadow: 0 2px 2px -2px #0E1119;
+    }
+
+    .container {
+        text-align: left;
+        overflow: hidden;
+        width: 100%;
+        margin: 0 auto;
+    display: table;
+    padding: 0 0 8em 0;
+    }
+
+    /* Background-color of the odd rows */
+    .container tr:nth-child(odd) {
+        background-color: #4C0033;
+    }
+
+    /* Background-color of the even rows */
+    .container tr:nth-child(even) {
+        background-color: #AF0171;
+    }
+
+    .container th {
+        background-color: #16213E;
+    }
+
+    .container td:first-child { color: #E6E5A3; }
+
+    .container tr:hover {
+    background-color: #AA8B56;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+    }
+
+    .container td:hover {
+    background-color: #A4BE7B;
+    color: #403E10;
+    font-weight: bold;
+
+    box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+
+    transition-delay: 0s;
+        transition-duration: 0.4s;
+        transition-property: all;
+    transition-timing-function: line;
+    }
+
+    @media (max-width: 800px) {
+    .container td:nth-child(4),
+    .container th:nth-child(4) { display: none; }
+    }
+    </style>
+    <title> Cycling Stats </title>
+</head>
+
+<body>
+  <left>
+      <a href="{% url 'index' %}">
+          <button class="btn btn-warning">HomePage</button>
+      </a>
+  </left>
+
+
+    <left>
+        <a href="{% url 'InsertCyclist' %}">
+            <button class="btn btn-warning">Insert Cyclist data</button>
+        </a>
+    </left>
+
+    <center>
+        <h1 style="color:black; font-weight:500"> <b>Show Cyclist Details</b> </h1>
+    </hr>
+    <form method="POST" action="SortCyclist">
+        {% csrf_token %}
+        <label for="Sort"></label>
+            <select id="Sort" name="Sort">
+                <option value="cyclist_id">Cyclist ID</option>
+                <option value="name">Cyclist Name</option>
+                <option value="contest">Contest</option>
+                <option value="rank">Rank</option>
+                <option value="email">E-mail</option>
+                <option value="event_id">Event ID</option>
+                <option value="country">Country</option>
+                <option value="age">Age</option>
+            </select>
+            <input type="submit" value="Sort"/>
+    </form>
+</hr>
+    <a href="{% url 'RunQueryCyclist' %}">
+        <button class="btn btn-warning">Run Query</button>
+    </a>
+</hr>
+        <table class="container">
+            <tr>
+                <th> Cyclist ID </th>
+                <th> Cyclist Name </th>
+                <th> Contest </th>
+                <th> Rank </th>
+                <th> E-mail </th>
+                <th> Event ID </th>
+                <th> Country </th>
+                <th> Age </th>
+                <th> Edit </th>
+                <th> Delete </th>
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td> {{result.cyclist_id}}</td>
+                <td> {{result.name}} </td>
+                <td> {{result.contest}} </td>
+                <td> {{result.rank}} </td>
+                <td> {{result.email}} </td>
+                <td> {{result.event_id}} </td>
+                <td> {{result.country}} </td>
+                <td> {{result.age}} </td>
+                <td><a href="EditCyclist/{{result.cyclist_id}}">Edit</a></td>
+                <td><a href="DelCyclist/{{result.cyclist_id}}" onclick="return confirm('Are you sure want to delete data?')">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

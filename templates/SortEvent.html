@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body  {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://wallpapercave.com/wp/wp3001015.jpg");
+              background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
+    <title> Cycling Stats </title>
+</head>
+
+<body>
+<left>
+    <a href="C:\Users\jillc\Desktop\csv_file\DBMS_Project\DBMS_WebSite\inx.html">
+        <button>HomePage</button>
+    </a>
+</left>
+
+<left>
+    <a href="C:\Users\jillc\Desktop\csv_file\DBMS_Project\DBMS_WebSite\ShowEvent.html">
+        <button>Event Database</button>
+    </a>
+</left>
+
+<left>
+    <a href="C:\Users\jillc\Desktop\csv_file\DBMS_Project\DBMS_WebSite\InsertEvent.html">
+        <button>Insert Event</button>
+    </a>
+</left>
+
+    <center>
+        <h1 style="color:black;"> <b>Show Event Details - Sorted </b></h1>
+    </hr>
+    <form method="POST" action="SortEvent">
+        {% csrf_token %}
+        <label for="Sort"></label>
+            <select id="Sort" name="Sort">
+              <option value="event_id">Event ID</option>
+              <option value="event_name">Event Name</option>
+              <option value="event_location">Event Location</option>
+              <option value="participation">Participation</option>
+              <option value="no_of_audience">no_of_audience</option>
+              <option value="winner_name">Winner Name</option>
+            </select>
+            <input type="submit" value="Sort"/>
+    </form>
+        </hr>
+
+        <table border="1" bgcolor="red">
+            <tr>
+              <th> Event ID </th>
+              <th> Event Name </th>
+              <th> Event Location </th>
+              <th> Participation  </th>
+              <th> no_of_audience </th>
+              <th> Winner Name </th>
+            </tr>
+            {% for result in data %}
+            <tr>
+              <td> {{result.event_id}}</td>
+              <td> {{result.event_name}} </td>
+              <td> {{result.event_location}} </td>
+              <td> {{result.participation}} </td>
+              <td> {{result.no_of_audience}} </td>
+              <td> {{result.winner_name}} </td>
+              <td><a href="EditEvent/{{result.event_id}}">Edit✍</a></td>
+              <td><a href="DelEvent/{{result.event_id}}" onclick="return confirm('Are you sure want to delete data?') ">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>
